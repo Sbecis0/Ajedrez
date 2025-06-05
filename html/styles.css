@@ -1,28 +1,35 @@
+/* Universal Box-Sizing Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
+    flex-direction: column; /* Allows footer to push to bottom */
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
+/* Game Container */
 .game-container {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); /* Keep if you intend for a background blur effect */
     max-width: 800px;
+    width: 100%; /* Ensure it takes full width on smaller screens */
+    margin-bottom: 20px; /* Space between game and footer */
 }
 
+/* Game Header */
 .game-header {
     text-align: center;
     margin-bottom: 20px;
@@ -35,6 +42,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Game Info Bar */
 .game-info {
     display: flex;
     justify-content: space-between;
@@ -58,6 +66,7 @@ body {
     flex-grow: 1;
 }
 
+/* Buttons */
 .reset-button {
     background: linear-gradient(45deg, #ff6b6b, #ee5a52);
     color: white;
@@ -77,7 +86,7 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos para modo online */
+/* Game Modes (Local/Online) */
 .game-modes {
     display: flex;
     gap: 10px;
@@ -108,6 +117,7 @@ body {
     box-shadow: 0 6px 12px rgba(79, 172, 254, 0.4);
 }
 
+/* Online Section */
 .online-section {
     background: rgba(0, 0, 0, 0.05);
     padding: 20px;
@@ -233,6 +243,7 @@ body {
     box-shadow: 0 3px 6px rgba(220, 53, 69, 0.3);
 }
 
+/* Connection Status */
 .connection-status {
     display: flex;
     align-items: center;
@@ -245,20 +256,21 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #dc3545;
+    background-color: #dc3545; /* Disconnected */
     animation: pulse 2s infinite;
 }
 
 .status-dot.connected {
-    background-color: #28a745;
+    background-color: #28a745; /* Connected */
     animation: none;
 }
 
 .status-dot.connecting {
-    background-color: #ffc107;
+    background-color: #ffc107; /* Connecting */
     animation: pulse 1s infinite;
 }
 
+/* Chess Board Layout */
 .board-container {
     display: flex;
     align-items: center;
@@ -269,9 +281,8 @@ body {
 .coordinates-left {
     display: flex;
     flex-direction: column;
-    grid-column: 2;
+    /* grid-column: 2; This was not necessary as it's not a grid item of parent */
     margin-right: 10px;
-
 }
 
 .board-wrapper {
@@ -305,6 +316,7 @@ body {
     font-size: 1.1em;
 }
 
+/* Chess Squares */
 .square {
     width: 70px;
     height: 70px;
@@ -314,7 +326,7 @@ body {
     cursor: pointer;
     position: relative;
     transition: all 0.2s ease;
-    font-size: 3em;
+    font-size: 3em; /* For chess piece icons */
     user-select: none;
 }
 
@@ -368,12 +380,7 @@ body {
     animation: pulse 1s infinite;
 }
 
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
-}
-
+/* Piece Styling */
 .piece {
     transition: all 0.3s ease;
     cursor: pointer;
@@ -385,6 +392,7 @@ body {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
+/* Captured Pieces Section */
 .captured-pieces {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -428,7 +436,13 @@ body {
     transform: scale(1.1);
 }
 
-/* Animaciones para movimientos */
+/* Animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
 .square.move-animation {
     animation: moveHighlight 0.5s ease-in-out;
 }
@@ -438,53 +452,76 @@ body {
     100% { background-color: inherit; }
 }
 
-/* Responsive design */
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
+    body {
+        padding: 10px; /* Adjust body padding for smaller screens */
+    }
+
     .game-container {
         padding: 15px;
-        margin: 10px;
+        margin: 10px auto; /* Center with margin */
     }
 
     .chess-board {
-        grid-template-columns: repeat(8, 50px);
-        grid-template-rows: repeat(8, 50px);
+        grid-template-columns: repeat(8, 40px); /* Smaller squares */
+        grid-template-rows: repeat(8, 40px);
     }
 
     .square {
-        width: 50px;
-        height: 50px;
-        font-size: 2em;
+        width: 40px;
+        height: 40px;
+        font-size: 1.8em; /* Adjust piece size */
     }
 
     .coordinates-bottom {
-        grid-template-columns: repeat(8, 50px);
+        grid-template-columns: repeat(8, 40px);
     }
 
     .coord {
-        height: 20px;
-        font-size: 0.9em;
+        height: 18px; /* Smaller coordinate height */
+        font-size: 0.8em;
     }
 
     .game-title {
-        font-size: 2em;
+        font-size: 1.8em; /* Smaller title */
     }
 
     .game-info {
         flex-direction: column;
         gap: 10px;
+        padding: 10px; /* Adjust padding for info bar */
+    }
+
+    .current-player, .game-status {
+        font-size: 1em;
+    }
+
+    .reset-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
     }
 
     .captured-pieces {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack captured pieces vertically */
+    }
+
+    .captured-white h3,
+    .captured-black h3 {
+        font-size: 1em;
+    }
+
+    .captured-piece {
+        font-size: 1.5em; /* Smaller captured piece icons */
     }
 
     .online-controls {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack online controls vertically */
         gap: 15px;
     }
 
     .game-modes {
-        flex-direction: column;
+        flex-direction: column; /* Stack mode buttons vertically */
         gap: 8px;
     }
 
@@ -492,23 +529,38 @@ body {
         padding: 10px 20px;
         font-size: 0.9em;
     }
-}
 
+    .room-creation input,
+    .room-join input,
+    .online-button {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .copy-button,
+    .leave-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .room-details p {
+        font-size: 0.9em;
+    }
+}
 
 /* Footer Styles */
 .footer {
-    /* Mueve estos estilos que estaban inline en el HTML */
-
     background: linear-gradient(145deg, #2c3e50, #34495e);
     color: #fff;
     text-align: center;
-    padding: 25px 10px 15px 10px; /* Ajustado ligeramente el padding */
+    padding: 25px 10px 15px 10px;
     border-top: 4px solid #667eea;
     font-size: 16px;
     letter-spacing: 1px;
     box-shadow: 0 -4px 20px rgba(44,62,80,0.2);
+    width: 100%; /* Ensure footer spans full width */
+    margin-top: auto; /* Pushes the footer to the bottom */
 }
-
 
 .footer-link {
     color: #667eea;
@@ -540,42 +592,37 @@ body {
     margin: 15px 0;
 }
 .footer-text {
-    margin-bottom: 5px; /* Pequeño margen entre líneas de texto */
-    line-height: 1.5; /* Mejora la legibilidad */
+    margin-bottom: 5px;
+    line-height: 1.5;
 }
 .footer a {
-    color: #f39c12; /* Color de enlace distintivo */
-    text-decoration: none; /* Quitar subrayado */
+    color: #f39c12;
+    text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s; /* Transición suave al pasar el ratón */
+    transition: color 0.3s;
 }
 .footer a:hover {
-    color: #27ae60; /* Color al pasar el ratón */
+    color: #27ae60;
 }
 
 
-/* Responsive Footer */
+/* Responsive Footer - Adjusted for clarity */
 @media (max-width: 768px) {
-    .game-footer {
-        margin-top: 20px;
-        padding: 20px 15px;
+    .footer {
+        padding: 20px 15px; /* Adjust padding for smaller screens */
+        font-size: 14px; /* Slightly smaller font for footer text */
     }
 
-    .footer-info {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .footer-item {
-        font-size: 0.85em;
+    .footer-text {
+        font-size: 0.9em; /* Adjust individual text lines */
     }
 
     .footer-link {
-        font-size: 0.85em;
+        font-size: 0.8em; /* Adjust footer link font size */
+        padding: 3px 8px; /* Smaller padding for footer links */
+    }
+
+    .footer-copyright {
+        font-size: 0.7em; /* Smaller copyright text */
     }
 }
