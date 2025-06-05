@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajedrez</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="game-container">
+  <div class="game-header">
+    <h1 class="game-title">♔ AJEDREZ ♕</h1>
+  </div>
+
+  <div class="game-modes">
+    <button id="local-mode-btn" class="mode-button active">Juego Local</button>
+    <button id="online-mode-btn" class="mode-button">Juego Online</button>
+  </div>
+
+  <div id="online-section" class="online-section hidden">
+    <div class="online-controls">
+      <div class="room-creation">
+        <input type="text" id="room-code" placeholder="Código de sala (opcional)" maxlength="6">
+        <button id="create-room-btn" class="online-button">Crear Sala</button>
+      </div>
+      <div class="room-join">
+        <input type="text" id="join-room-code" placeholder="Código para unirse" maxlength="6">
+        <button id="join-room-btn" class="online-button">Unirse a Sala</button>
+      </div>
+    </div>
+    <div id="room-info" class="room-info hidden">
+      <div class="room-details">
+        <p>Sala: <span id="current-room-code"></span></p>
+        <p>Jugadores: <span id="players-count">1/2</span></p>
+        <p>Tu color: <span id="player-color">Esperando...</span></p>
+      </div>
+      <button id="copy-room-btn" class="copy-button">Copiar Código</button>
+      <button id="leave-room-btn" class="leave-button">Salir de Sala</button>
+    </div>
+    <div id="connection-status" class="connection-status">
+      <span class="status-dot"></span>
+      <span id="status-text">Desconectado</span>
+    </div>
+  </div>
+
+  <div class="game-info">
+    <div class="current-player">
+      Turno: <span id="current-player">Blancas</span>
+    </div>
+    <div class="game-status" id="game-status">
+      Juego en curso
+    </div>
+    <button id="reset-btn" class="reset-button">
+      Nuevo Juego
+    </button>
+  </div>
+
+  <div class="board-container">
+    <div class="coordinates-left">
+      <div class="coord">8</div>
+      <div class="coord">7</div>
+      <div class="coord">6</div>
+      <div class="coord">5</div>
+      <div class="coord">4</div>
+      <div class="coord">3</div>
+      <div class="coord">2</div>
+      <div class="coord">1</div>
+    </div>
+
+    <div class="board-wrapper">
+      <div class="chess-board" id="chess-board">
+        <!-- Las casillas se generarán dinámicamente con JavaScript -->
+      </div>
+
+      <div class="coordinates-bottom">
+        <div class="coord">a</div>
+        <div class="coord">b</div>
+        <div class="coord">c</div>
+        <div class="coord">d</div>
+        <div class="coord">e</div>
+        <div class="coord">f</div>
+        <div class="coord">g</div>
+        <div class="coord">h</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="captured-pieces">
+    <div class="captured-white">
+      <h3>Piezas Capturadas - Blancas</h3>
+      <div id="captured-white"></div>
+    </div>
+    <div class="captured-black">
+      <h3>Piezas Capturadas - Negras</h3>
+      <div id="captured-black"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p class="footer-text">Desarrollado por Saber Becis</p>
+  <p class="footer-text footer-links">
+    <a href="https://github.com/Sbecis0/Ajedrez" target="_blank" rel="noopener noreferrer">Repositorio Github</a>
+  </p>
+  <p class="footer-text">Para actualizaciones al email: Sbeci0@gmail.com</p>
+  <p class="footer-divider"></p>
+  <p class="footer-copyright">© 2025 Que és eso? Copy que?</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
